@@ -51,9 +51,14 @@ export function GitHubContributions({ username }: { username: string }) {
         <div className="flex items-center justify-between mb-3">
           <h3 className="font-semibold text-sm">GitHub Activity</h3>
           <div className="text-xs text-muted-foreground">
-            Unable to load contributions
+            {error ? "Unable to load contributions" : "No data available"}
           </div>
         </div>
+        {!data?.totalContributions && data?.message?.includes('token') && (
+          <div className="text-xs text-yellow-600 mb-2 p-2 bg-yellow-50 rounded">
+            ⚠️ GitHub token missing. Add GITHUB_TOKEN to Vercel environment variables.
+          </div>
+        )}
         <div className="flex gap-1">
           {Array.from({ length: 53 }).map((_, i) => (
             <div key={i} className="flex flex-col gap-1">

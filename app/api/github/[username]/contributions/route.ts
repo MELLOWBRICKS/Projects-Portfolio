@@ -8,7 +8,12 @@ export async function GET(req: Request, { params }: { params: Promise<{ username
     
     const token = process.env.GITHUB_TOKEN
     if (!token) {
-      return NextResponse.json({ message: 'GitHub token required' }, { status: 500 })
+      console.error('GitHub token not found in environment variables')
+      return NextResponse.json({ 
+        message: 'GitHub token required. Please add GITHUB_TOKEN to environment variables.',
+        totalContributions: 0,
+        weeks: []
+      }, { status: 200 }) // Return 200 with empty data instead of error
     }
 
     const query = `
@@ -44,8 +49,22 @@ export async function GET(req: Request, { params }: { params: Promise<{ username
 
     const data = await response.json()
     
-    if (data.errors || !data.data?.user) {
-      return NextResponse.json({ message: 'Failed to fetch contributions' }, { status: 500 })
+    if (data.errors) {
+      console.error('GraphQL errors:', data.errors)
+      return NextResponse.json({ 
+        message: 'GraphQL error',
+        totalContributions: 0,
+        weeks: []
+      }, { status: 200 })
+    }
+    
+    if (!data.data?.user) {
+      console.error('User not found:', username)
+      return NextResponse.json({ 
+        message: 'User not found',
+        totalContributions: 0,
+        weeks: []
+      }, { status: 200 })
     }
 
     const calendar = data.data.user.contributionsCollection.contributionCalendar
@@ -56,6 +75,11 @@ export async function GET(req: Request, { params }: { params: Promise<{ username
     })
 
   } catch (error: any) {
-    return NextResponse.json({ message: 'Failed to fetch contributions' }, { status: 500 })
+    console.error('Contributions API error:', error)
+    return NextResponse.json({ 
+      message: 'Failed to fetch contributions',
+      totalContributions: 0,
+      weeks: []
+    }, { status: 200 })
   }
 }

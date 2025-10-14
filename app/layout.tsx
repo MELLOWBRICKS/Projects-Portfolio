@@ -7,8 +7,8 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
+  title: "Projects",
+  description: "GitHub Portfolio - Explore my projects and repositories",
   generator: "v0.app",
 }
 
@@ -19,6 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+      </head>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} overflow-hidden`}>
         <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
         <Analytics />
