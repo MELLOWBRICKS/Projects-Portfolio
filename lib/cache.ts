@@ -1,0 +1,18 @@
+const cache = new Map<string, { data: any; timestamp: number }>()
+const CACHE_DURATION = 15 * 60 * 1000 // 15 minutes
+
+export function getCache<T>(key: string): T | null {
+  const cached = cache.get(key)
+  if (!cached) return null
+  
+  if (Date.now() - cached.timestamp > CACHE_DURATION) {
+    cache.delete(key)
+    return null
+  }
+  
+  return cached.data
+}
+
+export function setCache<T>(key: string, data: T): void {
+  cache.set(key, { data, timestamp: Date.now() })
+}
