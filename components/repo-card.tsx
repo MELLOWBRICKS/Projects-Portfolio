@@ -78,7 +78,7 @@ export default function RepoCard({ repo }: { repo: Repo }) {
             href={repo.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 rounded-md bg-[#4A90E2] px-2 py-1 text-xs font-medium text-white transition-colors hover:bg-[#357ABD] focus:outline-none focus:ring-2 focus:ring-[#4A90E2] focus:ring-offset-1"
+            className="inline-flex items-center gap-1 rounded-md bg-[#3DB05A] px-2 py-1 text-xs font-medium text-white transition-colors hover:bg-[#2ea043] focus:outline-none focus:ring-2 focus:ring-[#3DB05A] focus:ring-offset-1"
             onClick={(e) => e.stopPropagation()}
             aria-label="Open on GitHub"
           >

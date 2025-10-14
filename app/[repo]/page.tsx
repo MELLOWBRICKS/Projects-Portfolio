@@ -64,7 +64,7 @@ export default async function RepoDetailPage({ params }: { params: Promise<{ rep
           <div className="flex gap-2">
             <a
               href={repo.html_url}
-              className="inline-flex items-center gap-2 rounded-md bg-[#4A90E2] px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-[#357ABD]"
+              className="inline-flex items-center gap-2 rounded-md bg-[#3DB05A] px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-[#2ea043]"
               target="_blank"
               rel="noreferrer"
             >
