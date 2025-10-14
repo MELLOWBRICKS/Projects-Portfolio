@@ -105,7 +105,7 @@ export default function GithubPortfolio() {
   }, [tab, myRepos, allRepos, search, language])
 
   return (
-    <div className="h-[100dvh] flex flex-col">
+    <div className="block md:h-[100dvh] md:flex md:flex-col">
       <div
         className="mx-auto w-full max-w-6xl px-4 py-4 flex flex-col gap-4"
         style={
@@ -214,7 +214,7 @@ export default function GithubPortfolio() {
       </div>
 
       {/* Content: Scrollable cards area */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="md:flex-1 md:overflow-y-auto">
         <div className="mx-auto max-w-6xl px-4 pb-4">
           {isLoading ? (
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
