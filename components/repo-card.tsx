@@ -57,7 +57,7 @@ export default function RepoCard({ repo }: { repo: Repo }) {
   return (
     <article
       className={cn(
-        "group relative flex h-72 w-full cursor-pointer flex-col rounded-lg border border-border bg-card p-4 transition-transform hover:-translate-y-0.5 hover:shadow-md",
+        "group relative flex h-72 w-full cursor-pointer flex-col rounded-lg border border-border bg-card p-4 transition-transform hover:-translate-y-0.5 hover:shadow-md overflow-hidden",
       )}
       onClick={openDetails}
       role="button"
@@ -93,7 +93,7 @@ export default function RepoCard({ repo }: { repo: Repo }) {
 
       {/* README markdown preview with bottom fade */}
       <div className="relative mb-3 flex-1 overflow-hidden rounded-md border border-border bg-background p-2">
-        <div className="prose prose-invert readme-prose max-w-none text-xs leading-relaxed">
+        <div className="prose prose-invert readme-prose max-w-none text-xs leading-relaxed overflow-hidden break-words">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {readme?.markdown
               ? readme.markdown.split("\n").slice(0, 20).join("\n")
